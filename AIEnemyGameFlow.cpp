@@ -2,12 +2,12 @@
 // aviya goldfarb 201509635
 //
 
-#include "GameFlow.h"
+#include "AIEnemyGameFlow.h"
 
-GameFlow::GameFlow(Player *blackPlayer, Player *whitePlayer, AbstractGameLogic *gameLogic, DisplayGame *displayGameOnConsole) :
-        blackPlayer(blackPlayer), whitePlayer(whitePlayer), gameLogic(gameLogic) , displayGameOnConsole(displayGameOnConsole){}
+AIEnemyGameFlow::AIEnemyGameFlow(Player *blackPlayer, Player *whitePlayer, AbstractGameLogic *gameLogic, DisplayGame *displayGameOnConsole) :
+        GameFlow(blackPlayer, whitePlayer, gameLogic, displayGameOnConsole){}
 
-bool GameFlow::chosenCellValidity(vector<Point> possibleMovesVector, Point chosenCell){
+bool AIEnemyGameFlow::chosenCellValidity(vector<Point> possibleMovesVector, Point chosenCell){
     for(int i = 0; i < possibleMovesVector.size(); i++){
         if(possibleMovesVector[i].isEqual(chosenCell)){
             return true;
@@ -16,7 +16,7 @@ bool GameFlow::chosenCellValidity(vector<Point> possibleMovesVector, Point chose
     return false;
 }
 
-void GameFlow::setNextTurn(){
+void AIEnemyGameFlow::setNextTurn(){
     if(this->turn == blackPlayer){
         this->turn = whitePlayer;
         this->nextTurn = blackPlayer;
@@ -27,7 +27,7 @@ void GameFlow::setNextTurn(){
     }
 }
 
-void GameFlow::playTheGame() {
+void AIEnemyGameFlow::playTheGame() {
     //initialize the turns
     this->turn = blackPlayer;
     this->nextTurn = whitePlayer;
@@ -36,6 +36,7 @@ void GameFlow::playTheGame() {
     int x, y;
     //running until the end of the game criteria
     do{
+        cout << "kookookookookookookookookookoo" << endl;
         cout << "Current board:" << endl;
         cout << endl;
         //printing the board using printGameBoard function from DisplayGameOnConsole class
@@ -85,9 +86,9 @@ void GameFlow::playTheGame() {
         }while(1);
         possibleMovesVector.clear();
         this->setNextTurn();
-    //end of the game criteria
+        //end of the game criteria
     }while(!(gameLogic->fullBoard()) && (gameLogic->possibleMoves(this->turn, this->nextTurn).size() != 0 ||
-            gameLogic->possibleMoves(this->nextTurn, this->turn).size() != 0));
+                                         gameLogic->possibleMoves(this->nextTurn, this->turn).size() != 0));
 
     //printing the board using printGameBoard function from DisplayGameOnConsole class
     this->displayGameOnConsole->printGameBoard();
@@ -105,4 +106,8 @@ void GameFlow::playTheGame() {
         cout << "No winner, both players are even with " << blackPlayer->getPlayerScore() << " cells each.";
     }
     cout << endl;
+}
+
+AIEnemyGameFlow::~AIEnemyGameFlow() {
+
 }

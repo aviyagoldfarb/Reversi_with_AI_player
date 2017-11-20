@@ -2,8 +2,8 @@
 // aviya goldfarb 201509635
 //
 
-#ifndef EX2_GAMEFLOW_H
-#define EX2_GAMEFLOW_H
+#ifndef EX3_GAMEFLOW_H
+#define EX3_GAMEFLOW_H
 
 #include "Player.h"
 #include "GameLogic.h"
@@ -17,30 +17,34 @@
 class GameFlow {
 public:
     /**
-     * constructor of GameFlow object.
+     * constructor of HumanEnemyGameFlow object.
      * @param blackPlayer
      * @param whitePlayer
      * @param gameLogic
      * @param DisplayGameOnConsole
      */
-    GameFlow(Player *blackPlayer, Player *whitePlayer, AbstractGameLogic *gameLogic, DisplayGame *DisplayGameOnConsole);
+    GameFlow(Player *blackPlayer, Player *whitePlayer, AbstractGameLogic *gameLogic, DisplayGame *displayGameOnConsole):
+            blackPlayer(blackPlayer), whitePlayer(whitePlayer), gameLogic(gameLogic), displayGameOnConsole(displayGameOnConsole){}
     /**
      * checks if the chosen cell is in the possibleMovesVector.
      * @param possibleMovesVector
      * @param chosenCell
      * @return boolean
      */
-    bool chosenCellValidity(vector<Point> possibleMovesVector, Point chosenCell);
+    virtual bool chosenCellValidity(vector<Point> possibleMovesVector, Point chosenCell) = 0;
     /**
      * responsible for the turn exchanges between the players.
      */
-    void setNextTurn();
+    virtual void setNextTurn() = 0;
     /**
      * responsible for the game's running.
      */
-    void playTheGame();
-
-private:
+    virtual void playTheGame() = 0;
+    /**
+     * destructor of GameFlow object
+     */
+    virtual ~GameFlow(){}
+protected:
     //pointers to HumanPlayer object
     Player *blackPlayer, *whitePlayer;
     //pointer to GameLogic object
@@ -51,4 +55,4 @@ private:
     Player *turn, *nextTurn;
 };
 
-#endif //EX2_GAMEFLOW_H
+#endif //EX3_GAMEFLOW_H
