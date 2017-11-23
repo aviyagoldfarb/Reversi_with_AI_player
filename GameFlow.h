@@ -1,12 +1,13 @@
 //
-// aviya goldfarb 201509635
+// Udi Goldman 301683264 , Aviya Goldfarb 201509635
 //
 
 #ifndef EX3_GAMEFLOW_H
 #define EX3_GAMEFLOW_H
 
 #include "Player.h"
-#include "GameLogic.h"
+#include "AIPlayer.h"
+#include "AbstractGameLogic.h"
 #include "DisplayGameOnConsole.h"
 #include "Point.h"
 #include <limits>

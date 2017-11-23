@@ -1,11 +1,10 @@
 //
-// aviya goldfarb 201509635
+// Udi Goldman 301683264 , Aviya Goldfarb 201509635
 //
 
 #include "Board.h"
 #include "HumanPlayer.h"
 #include "AIPlayer.h"
-#include "GameLogic.h"
 #include "DisplayGameOnConsole.h"
 #include "HumanEnemyGameFlow.h"
 #include "AIEnemyGameFlow.h"
@@ -51,9 +50,13 @@ int main() {
     gameFlow->playTheGame();
 
     //delete created objects
-    delete board;
+
+    /*we put 'delete board' in comment because in the current implementation the board is
+    deleted within the 'GameLogic' destructor*/
+    //delete board;
     delete blackPlayer;
     delete whitePlayer;
+    //deletes the board as well
     delete gameLogic;
     delete displayGameOnConsole;
     delete gameFlow;

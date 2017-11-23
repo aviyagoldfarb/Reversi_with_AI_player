@@ -1,10 +1,14 @@
 //
-// aviya goldfarb 201509635
+// Udi Goldman 301683264 , Aviya Goldfarb 201509635
 //
 
 #include "HumanPlayer.h"
 
 HumanPlayer::HumanPlayer(Sign playerSign) : Player(playerSign) {
+
+}
+
+HumanPlayer::HumanPlayer(HumanPlayer *otherPlayer) : Player(otherPlayer){
 
 }
 

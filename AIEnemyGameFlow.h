@@ -1,11 +1,12 @@
 //
-// aviya goldfarb 201509635
+// Udi Goldman 301683264 , Aviya Goldfarb 201509635
 //
 
 #ifndef EX3_AIENEMYGAMEFLOW_H
 #define EX3_AIENEMYGAMEFLOW_H
 
 #include "GameFlow.h"
+#include "AbstractGameLogic.h"
 
 /**
  * the class AIEnemyGameFlow defines AIEnemyGameFlow object.

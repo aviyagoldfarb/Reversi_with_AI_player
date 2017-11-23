@@ -1,13 +1,13 @@
 //
-// aviya goldfarb 201509635
+// Udi Goldman 301683264 , Aviya Goldfarb 201509635
 //
 
 #ifndef EX2_ABSTRACTGAMELOGIC_H
 #define EX2_ABSTRACTGAMELOGIC_H
 
 #include "Board.h"
-#include "HumanPlayer.h"
 #include "Point.h"
+#include "Player.h"
 
 /**
  * abstract class AbstractGameLogic.
@@ -19,6 +19,13 @@ public:
      * @param board pointer to board object.
      */
     AbstractGameLogic(Board *board): board(board){}
+    /**
+     * copy constructor.
+     * @param otherAbstractGameLogic
+     */
+    AbstractGameLogic(AbstractGameLogic *otherAbstractGameLogic){
+        this->board = new Board(otherAbstractGameLogic->board);
+    }
     /**
      * check cell existence before inserting it to the possibleMovesVector.
      * @param possibleMovesVector.

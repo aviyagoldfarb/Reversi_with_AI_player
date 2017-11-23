@@ -1,5 +1,5 @@
 //
-// aviya goldfarb 201509635
+// Udi Goldman 301683264 , Aviya Goldfarb 201509635
 //
 
 #ifndef EX2_PLAYER_H
@@ -17,6 +17,11 @@ public:
      * @param playerSign value from enum Sign.
      */
     Player(Sign playerSign = EMPTY) : playerSign(playerSign) , playerScore(2) {}
+    /**
+     * copy constructor.
+     * @param otherPlayer
+     */
+    Player(Player *otherPlayer) : playerSign(otherPlayer->getPlayerSign()) , playerScore(otherPlayer->getPlayerScore()) {}
     /**
      * get the sign of the player(BLACK or WHITE).
      * @return sign of the player.

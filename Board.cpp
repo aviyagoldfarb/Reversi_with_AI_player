@@ -1,5 +1,5 @@
 //
-// aviya goldfarb 201509635
+// Udi Goldman 301683264 , Aviya Goldfarb 201509635
 //
 
 #include "Board.h"
@@ -12,6 +12,16 @@ Board::Board(int rows, int columns) : rows(rows) , columns(columns) {
     this->board[(rows/2)][(columns/2)] = WHITE;
     this->board[(rows/2)-1][(columns/2)] = BLACK;
     this->board[(rows/2)][(columns/2)-1] = BLACK;
+}
+
+Board::Board(Board *otherBoard) : rows(otherBoard->getRows()) , columns(otherBoard->getColumns()) {
+    //creating two dimensional vector of type Cell
+    this->board = vector< vector<Cell> >(rows, vector<Cell>(columns));
+    for(int i = 0; i < rows; i++){
+        for(int j = 0; j < columns; j++){
+            this->board[i][j] = otherBoard->getBoard()[i][j];
+        }
+    }
 }
 
 int Board::getRows() const {

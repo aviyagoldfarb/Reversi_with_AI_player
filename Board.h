@@ -1,5 +1,5 @@
 //
-// aviya goldfarb 201509635
+// Udi Goldman 301683264 , Aviya Goldfarb 201509635
 //
 
 #ifndef EX1_BOARD_H
@@ -23,6 +23,11 @@ public:
      * @param columns = 8 by default.
      */
     Board(int rows=8, int columns=8);
+    /**
+     * copy constructor.
+     * @param otherBoard
+     */
+    Board(Board *otherBoard);
     /**
      * get the number of rows.
      * @return numer of rows.
@@ -48,7 +53,7 @@ public:
     /**
      * destructor of Board object.
      */
-    virtual ~Board();
+    ~Board();
 
 private:
     //will hold the value of the rows of the board

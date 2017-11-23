@@ -1,10 +1,12 @@
 //
-// aviya goldfarb 201509635
+// Udi Goldman 301683264 , Aviya Goldfarb 201509635
 //
 
 #include "GameLogic.h"
 
 GameLogic::GameLogic(Board *board) : AbstractGameLogic(board) {}
+
+GameLogic::GameLogic(GameLogic *otherAbstractGameLogic) : AbstractGameLogic(otherAbstractGameLogic) {}
 
 bool GameLogic::checkCellExistence(vector<Point> possibleMovesVector, Point cell){
     for(int i = 0; i < possibleMovesVector.size(); i++){
@@ -325,4 +327,8 @@ bool GameLogic::fullBoard(){
     if(emptyCounter == 0){
         return true;
     }
+}
+
+GameLogic::~GameLogic() {
+    delete this->board;
 }

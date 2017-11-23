@@ -1,5 +1,5 @@
 //
-// aviya goldfarb 201509635
+// Udi Goldman 301683264 , Aviya Goldfarb 201509635
 //
 
 #ifndef EX2_GAMELOGIC_H
@@ -17,6 +17,11 @@ public:
      * @param board pointer to board object.
      */
     GameLogic(Board *board);
+    /**
+     * copy constructor.
+     * @param otherAbstractGameLogic
+     */
+    GameLogic(GameLogic *otherAbstractGameLogic);
     /**
      * check cell existence before inserting it to the possibleMovesVector.
      * @param possibleMovesVector.
@@ -46,7 +51,7 @@ public:
     /**
      * destructor of GameLogic object
      */
-    virtual ~GameLogic(){}
+    virtual ~GameLogic();
 };
 
 #endif //EX2_GAMELOGIC_H

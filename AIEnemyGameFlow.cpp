@@ -1,5 +1,5 @@
 //
-// aviya goldfarb 201509635
+// Udi Goldman 301683264 , Aviya Goldfarb 201509635
 //
 
 #include "AIEnemyGameFlow.h"
@@ -36,7 +36,6 @@ void AIEnemyGameFlow::playTheGame() {
     int x, y;
     //running until the end of the game criteria
     do{
-        cout << "kookookookookookookookookookoo" << endl;
         cout << "Current board:" << endl;
         cout << endl;
         //printing the board using printGameBoard function from DisplayGameOnConsole class
@@ -61,29 +60,45 @@ void AIEnemyGameFlow::playTheGame() {
         }
         cout << endl;
         cout << endl;
-        //loop until the player enters appropriate cell
-        do {
-            cout << "Please enter your move row col: ";
-            cin >> x >> y;
-            if(cin.fail()){
-                cout << "This is not a number. Try again." << endl;
-                cout << endl;
-                cin.clear();
-                cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
-                continue;
-            }
-            //create a point from the player's input
-            Point chosenCell(x, y);
-            //check if the player's input is valid
-            if (this->chosenCellValidity(possibleMovesVector, chosenCell)) {
-                gameLogic->moveMaker(chosenCell, this->turn, this->nextTurn);
-                break;
-            } else {
-                //keep looping
-                cout << "The chosen cell is not valid. Try again." << endl;
-                cout << endl;
-            }
-        }while(1);
+
+
+
+        //check if the current player is the human player (black)
+        if(this->turn->getPlayerSign() == blackPlayer->getPlayerSign()){
+            //loop until the player enters appropriate cell
+            do {
+                cout << "Please enter your move row col: ";
+                cin >> x >> y;
+                if (cin.fail()) {
+                    cout << "This is not a number. Try again." << endl;
+                    cout << endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+                    continue;
+                }
+                //create a point from the player's input
+                Point chosenCell(x, y);
+                //check if the player's input is valid
+                if (this->chosenCellValidity(possibleMovesVector, chosenCell)) {
+                    gameLogic->moveMaker(chosenCell, this->turn, this->nextTurn);
+                    break;
+                } else {
+                    //keep looping
+                    cout << "The chosen cell is not valid. Try again." << endl;
+                    cout << endl;
+                }
+            } while (1);
+        }
+        else{//the current player is the AI player (white)
+            //downcast
+            AIPlayer * aiPlayer = static_cast<AIPlayer *>(this->turn);
+            Point chosenCell = aiPlayer->miniMaxAlgorithm(possibleMovesVector, gameLogic, this->nextTurn);
+            gameLogic->moveMaker(chosenCell, this->turn, this->nextTurn);
+            cout << "AI player choose ";
+            chosenCell.pointToPrint();
+            cout << endl;
+        }
+
         possibleMovesVector.clear();
         this->setNextTurn();
         //end of the game criteria
@@ -91,6 +106,7 @@ void AIEnemyGameFlow::playTheGame() {
                                          gameLogic->possibleMoves(this->nextTurn, this->turn).size() != 0));
 
     //printing the board using printGameBoard function from DisplayGameOnConsole class
+    cout << endl;
     this->displayGameOnConsole->printGameBoard();
     cout << endl;
     cout << endl;
