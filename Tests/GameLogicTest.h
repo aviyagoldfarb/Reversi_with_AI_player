@@ -17,6 +17,14 @@ public:
         //creating an instance of Board object
         this->board = new Board();
         this->gameLogic = new GameLogic(board);
+       // this->cell = Point(0, 0);
+        Point cell2(1, 2);
+        Point cell3(5, 8);
+        vector<Point> possibleMovesVectorA;
+        possibleMovesVectorA.push_back(cell2);
+        possibleMovesVectorA.push_back(cell3);
+        possibleMovesVectorA.push_back(cell);
+        this->possibleMovesVector = possibleMovesVectorA;
     }
 
     virtual void SetUp() {
@@ -41,6 +49,8 @@ public:
 protected:
     Board *board;
     GameLogic *gameLogic;
+    vector<Point> possibleMovesVector;
+    Point cell = Point(1, 1);
 };
 
 #endif //EX3_GAMELOGICTEST_H
