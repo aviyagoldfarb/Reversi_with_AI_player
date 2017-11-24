@@ -40,6 +40,8 @@ public:
 
     ~GameLogicTest(){
         delete gameLogic;
+        delete blackPlayer;
+        delete whitePlayer;
     }
 
 protected:
