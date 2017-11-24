@@ -7,6 +7,7 @@
 
 #include "gtest/gtest.h"
 #include "../GameLogic.h"
+#include "../HumanPlayer.h"
 
 #include <iostream>
 using namespace std;
@@ -17,26 +18,21 @@ public:
         //creating an instance of Board object
         this->board = new Board();
         this->gameLogic = new GameLogic(board);
-       // this->cell = Point(0, 0);
-        Point cell2(1, 2);
-        Point cell3(5, 8);
-        vector<Point> possibleMovesVectorA;
-        possibleMovesVectorA.push_back(cell2);
-        possibleMovesVectorA.push_back(cell3);
-        possibleMovesVectorA.push_back(cell);
-        this->possibleMovesVector = possibleMovesVectorA;
+        this->blackPlayer = new HumanPlayer(BLACK);
+        this->whitePlayer = new HumanPlayer(WHITE);
     }
 
     virtual void SetUp() {
         cout << "Setting up" << endl;
-        for(int i = 0; i < board->getRows(); i++){
-            for(int j = 0; j < board->getColumns(); j++){
-                this->board->setBoard(i, j, WHITE);
-            }
-        }
+
+        Point cell2(3, 4);
+        Point cell3(4, 3);
+        Point cell4(6, 5);
+        this->possibleMovesVector.push_back(cell4);
+        this->possibleMovesVector.push_back(cell3);
+        this->possibleMovesVector.push_back(cell2);
+        this->possibleMovesVector.push_back(cell);
     }
-
-
 
     virtual void TearDown() {
         cout << "Tearing down" << endl;
@@ -50,7 +46,8 @@ protected:
     Board *board;
     GameLogic *gameLogic;
     vector<Point> possibleMovesVector;
-    Point cell = Point(1, 1);
+    Point cell = Point(5, 6);
+    Player *blackPlayer, *whitePlayer;
 };
 
 #endif //EX3_GAMELOGICTEST_H

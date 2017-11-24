@@ -32,3 +32,11 @@ bool Point::isEqual(Point other){
 void Point::pointToPrint() const{
     cout << "(" << this->x << "," << this->y << ")";
 }
+
+bool operator == (const Point &point1, const Point &point2) {
+    if(point1.getX() == point2.getX() && point1.getY() == point2.getY()){
+        return true;
+    }
+    else
+        return false;
+}
