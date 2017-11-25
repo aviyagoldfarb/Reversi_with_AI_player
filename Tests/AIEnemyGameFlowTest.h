@@ -2,24 +2,29 @@
 // Udi Goldman 301683264 , Aviya Goldfarb 201509635
 //
 
-#ifndef EX3_GAMELOGICTEST_H
-#define EX3_GAMELOGICTEST_H
+#ifndef EX3_AIENEMYGAMEFLOWTEST_H
+#define EX3_AIENEMYGAMEFLOWTEST_H
 
 #include "gtest/gtest.h"
 #include "../GameLogic.h"
 #include "../HumanPlayer.h"
+#include "../AIPlayer.h"
+#include "../HumanEnemyGameFlow.h"
+#include "../AIEnemyGameFlow.h"
 
 #include <iostream>
 using namespace std;
 
-class GameLogicTest: public testing::Test {
+class AIEnemyGameFlowTest: public testing::Test {
 public:
-    GameLogicTest(){
+    AIEnemyGameFlowTest(){
         //creating an instance of Board object
         this->board = new Board();
         this->gameLogic = new GameLogic(board);
         this->blackPlayer = new HumanPlayer(BLACK);
-        this->whitePlayer = new HumanPlayer(WHITE);
+        this->whitePlayer = new AIPlayer(WHITE);
+        this->displayGameOnConsole = new DisplayGameOnConsole(board);
+        this->gameFlow = new HumanEnemyGameFlow(blackPlayer, whitePlayer, gameLogic, displayGameOnConsole);
     }
 
     virtual void SetUp() {
@@ -35,10 +40,12 @@ public:
     virtual void TearDown() {
     }
 
-    ~GameLogicTest(){
-        delete gameLogic;
+    ~AIEnemyGameFlowTest(){
         delete blackPlayer;
         delete whitePlayer;
+        delete gameLogic;
+        delete displayGameOnConsole;
+        delete gameFlow;
     }
 
 protected:
@@ -47,6 +54,8 @@ protected:
     vector<Point> possibleMovesVector;
     Point cell = Point(5, 6);
     Player *blackPlayer, *whitePlayer;
+    DisplayGame *displayGameOnConsole;
+    GameFlow *gameFlow;
 };
 
-#endif //EX3_GAMELOGICTEST_H
+#endif //EX3_AIENEMYGAMEFLOWTEST_H
