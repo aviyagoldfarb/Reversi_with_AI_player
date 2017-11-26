@@ -40,3 +40,7 @@ bool operator == (const Point &point1, const Point &point2) {
     else
         return false;
 }
+
+bool operator != (const Point &point1, const Point &point2) {
+    return ((point1.getX() != point2.getX()) || (point1.getY() != point2.getY()));
+}

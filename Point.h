@@ -65,5 +65,6 @@ private:
  * @return
  */
 bool operator ==(const Point &point1, const Point &point2);
+bool operator !=(const Point &point1, const Point &point2);
 
 #endif //EX2_POINT_H

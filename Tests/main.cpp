@@ -5,6 +5,7 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 #include "GameLogicTest.h"
+#include "AIPlayerTest.h"
 
 GTEST_API_ int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
