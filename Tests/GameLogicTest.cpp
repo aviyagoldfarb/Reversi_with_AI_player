@@ -5,9 +5,9 @@
 #include "GameLogicTest.h"
 
 TEST_F(GameLogicTest, checkCellExistenceTest) {
-    EXPECT_EQ(true, gameLogic->checkCellExistence(this->possibleMovesVector, this->cell)) << "the function didn't find an existence cell";
+    EXPECT_EQ(true, gameLogic->checkCellExistence(this->possibleMovesVector, *this->cell)) << "the function didn't find an existence cell";
     this->possibleMovesVector.pop_back();
-    EXPECT_NE(true, gameLogic->checkCellExistence(this->possibleMovesVector, this->cell)) << "the function found a cell that not exists";
+    EXPECT_NE(true, gameLogic->checkCellExistence(this->possibleMovesVector, *this->cell)) << "the function found a cell that not exists";
 }
 
 TEST_F(GameLogicTest, possibleMovesTest) {
