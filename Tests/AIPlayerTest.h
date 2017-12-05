@@ -1,5 +1,5 @@
 //
-// Created by udi on 25/11/17.
+// Udi Goldman 301683264 , Aviya Goldfarb 201509635
 //
 
 #ifndef EX3_AIPLAYERTEST_H
@@ -19,37 +19,44 @@ public:
     AIPlayerTest(){
 
         this->board = new Board();
+	this->point1 = new Point(1, 1);
+	this->point2 = new Point(5, 3);
+	this->point3 = new Point(3, 3);
+	this->point4 = new Point(3, 5);
         this->board->setBoard((board->getRows() / 2) - 1,(board->getColumns() / 2) - 1, BLACK);
         this->board->setBoard((board->getRows() / 2) - 2,(board->getColumns() / 2) - 1, BLACK);
         this->gameLogic = new GameLogic(board);
-        this->aiPlayer = new AIPlayer(BLACK);
-        this->humanPlayer = new HumanPlayer(WHITE);
-        this->possibleMovesVector = this->gameLogic->possibleMoves(this->humanPlayer,this->aiPlayer);
+        this->blackPlayer = new HumanPlayer(BLACK);
+        this->whitePlayer = new AIPlayer(WHITE);
     }
 
     virtual void SetUp() {
-        cout << "Setting up" << endl;
+        this->possibleMovesVector = this->gameLogic->possibleMoves(this->whitePlayer, this->blackPlayer);
     }
+
     virtual void TearDown() {
-        cout << "Tearing down" << endl;
     }
 
     ~AIPlayerTest() {
+	delete point1;
+	delete point2;
+	delete point3;
+	delete point4;
         delete gameLogic;
-        delete aiPlayer;
-        delete humanPlayer;
+        delete blackPlayer;
+        delete whitePlayer;
     }
 
 protected:
     Board *board;
     GameLogic *gameLogic;
     vector<Point> possibleMovesVector;
-    HumanPlayer *humanPlayer;
-    AIPlayer *aiPlayer;
-    const Point point1 = Point(1, 1);
-    const Point point2 = Point(5, 3);
-    const Point point3 = Point(3, 3);
-    const Point badPoint = Point(3, 5);
+    HumanPlayer *blackPlayer;
+    AIPlayer *whitePlayer;
+    Point *point1;
+    Point *point2;
+    Point *point3;
+    Point *point4;
 
 };
 

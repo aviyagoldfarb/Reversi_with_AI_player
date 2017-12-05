@@ -17,6 +17,7 @@ public:
     GameLogicTest(){
         //creating an instance of Board object
         this->board = new Board();
+	    this->cell = new Point(5, 6);
         this->gameLogic = new GameLogic(board);
         this->blackPlayer = new HumanPlayer(BLACK);
         this->whitePlayer = new HumanPlayer(WHITE);
@@ -29,13 +30,14 @@ public:
         this->possibleMovesVector.push_back(cell4);
         this->possibleMovesVector.push_back(cell3);
         this->possibleMovesVector.push_back(cell2);
-        this->possibleMovesVector.push_back(cell);
+        this->possibleMovesVector.push_back(*cell);
     }
 
     virtual void TearDown() {
     }
 
     ~GameLogicTest(){
+        delete cell;
         delete gameLogic;
         delete blackPlayer;
         delete whitePlayer;
@@ -45,7 +47,7 @@ protected:
     Board *board;
     GameLogic *gameLogic;
     vector<Point> possibleMovesVector;
-    Point cell = Point(5, 6);
+    Point *cell;
     Player *blackPlayer, *whitePlayer;
 };
 
